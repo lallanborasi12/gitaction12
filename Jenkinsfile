@@ -61,7 +61,7 @@ pipeline {
         stage('Restart Apache') {
             steps {
                 sh '''
-                    systemctl restart apache2
+                   sudo systemctl restart apache2
                 '''
             }
         }
