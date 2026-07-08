@@ -1,0 +1,33 @@
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* @font-face {
+  font-family: "HelveticaNeue";
+  src: url("./Assest/font/HelveticaNeue.ttf");
+} */
+@font-face {
+  font-family: 'Poppins';
+  src: 
+  url('./Assest/font/Poppins-Black.ttf') format('ttf'),
+  url('./Assest/font/Poppins-BlackItalic.ttf')  format('ttf'),
+  url('./Assest/font/Poppins-Bold.ttf')  format('ttf'),
+  url('./Assest/font/Poppins-BoldItalic.ttf')  format('ttf'),
+  url('./Assest/font/Poppins-ExtraBold.ttf')  format('ttf'),
+  url('./Assest/font/Poppins-ExtraBoldItalic.ttf')  format('ttf'),
+  url('./Assest/font/Poppins-ExtraLight.ttf')  format('ttf'),
+  url('./Assest/font/Poppins-ExtraLightItalic.ttf')  format('ttf'),
+  url('./Assest/font/Poppins-Italic.ttf')  format('ttf'),
+  url('./Assest/font/Poppins-Light.ttf')  format('ttf'),
+  url('./Assest/font/Poppins-LightItalic.ttf')  format('ttf'),
+  url('./Assest/font/Poppins-Medium.ttf')  format('ttf'),
+  url('./Assest/font/Poppins-MediumItalic.ttf')  format('ttf'),
+  url('./Assest/font/Poppins-Regular.ttf')  format('ttf'),
+  url('./Assest/font/Poppins-SemiBold.ttf')  format('ttf'),
+  url('./Assest/font/Poppins-SemiBoldItalic.ttf')  format('ttf'),
+  url('./Assest/font/Poppins-Thin.ttf')  format('ttf'),
+  url('./Assest/font/Poppins-ThinItalic.ttf')  format('ttf');
+  font-style: normal;
+  font-weight: normal;
+}
