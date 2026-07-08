@@ -31,10 +31,10 @@ pipeline {
         stage('Backup Current Website') {
             steps {
                 sh '''
-                    sudo mkdir -p ${BACKUP_DIR}
+                    mkdir -p ${BACKUP_DIR}
 
                     if [ "$(ls -A ${DEPLOY_DIR})" ]; then
-                        sudo tar -czf ${BACKUP_DIR}/backup-$(date +%Y-%m-%d-%H-%M-%S).tar.gz ${DEPLOY_DIR}
+                        tar -czf ${BACKUP_DIR}/backup-$(date +%Y-%m-%d-%H-%M-%S).tar.gz -C ${DEPLOY_DIR} .
                     fi
                 '''
             }
@@ -44,11 +44,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
-                    sudo rm -rf ${DEPLOY_DIR}/*
+                    rm -rf ${DEPLOY_DIR}/*
 
-                    sudo cp -r build/* ${DEPLOY_DIR}/
-
-                    sudo chown -R jenkins:jenkins ${DEPLOY_DIR}
+                    cp -r build/* ${DEPLOY_DIR}/
                 '''
             }
         }
