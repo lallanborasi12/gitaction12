@@ -1,10 +1,9 @@
 pipeline {
+
     agent any
 
     environment {
         CI = "false"
-        DEPLOY_DIR = "/var/www/html"
-        BACKUP_DIR = "/var/www/backup"
     }
 
     stages {
@@ -16,11 +15,13 @@ pipeline {
             }
         }
 
+
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
             }
         }
+
 
         stage('Build') {
             steps {
@@ -28,13 +29,15 @@ pipeline {
             }
         }
 
+
         stage('Backup Current Website') {
             steps {
                 sh '''
-                    mkdir -p ${BACKUP_DIR}
+                    mkdir -p /var/www/backup
 
-                    if [ "$(ls -A ${DEPLOY_DIR})" ]; then
-                        tar -czf ${BACKUP_DIR}/backup-$(date +%Y-%m-%d-%H-%M-%S).tar.gz -C ${DEPLOY_DIR} .
+                    if [ "$(ls -A /var/www/html)" ]; then
+                        tar -czf /var/www/backup/backup-$(date +%Y-%m-%d-%H-%M-%S).tar.gz \
+                        -C /var/www/html .
                     fi
                 '''
             }
@@ -44,9 +47,12 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
-                    rm -rf ${DEPLOY_DIR}/*
+                    rm -rf /var/www/html/*
 
-                    cp -r build/* ${DEPLOY_DIR}/
+                    cp -r build/* /var/www/html/
+
+                    chown -R jenkins:jenkins /var/www/html
+                    chmod -R 755 /var/www/html
                 '''
             }
         }
@@ -55,7 +61,7 @@ pipeline {
         stage('Restart Apache') {
             steps {
                 sh '''
-                    sudo systemctl restart apache2
+                    systemctl restart apache2
                 '''
             }
         }
