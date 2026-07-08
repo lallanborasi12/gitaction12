@@ -30,7 +30,7 @@ pipeline {
             steps {
                 sh '''
                     rm -rf /var/www/html/*
-                    cp -r build/* /var/www/html/
+                    cp -r build/* /var/www/html2/build
                 '''
             }
         }
